@@ -2,7 +2,7 @@
  * Sample response of each custom errors
  */
 
-const { BadRequestError, ForbiddenError, NotFoundError, UnauthorizedError } = require('../errors/index')
+const { BadRequestError, ForbiddenError, InternalServerError, NotFoundError, UnauthorizedError } = require('../errors/index')
 
 const badrequest = () => {
     const message = `Missing required parameters, invalid data types, or incorrect syntax in the request.`
@@ -12,6 +12,10 @@ const badrequest = () => {
 const forbidden = () => {
     const message = `You are not authorized to access the requested resource`
     throw new ForbiddenError(message)
+}
+
+const internalserver = () => {
+    const message = `An internal server error occurred.. Please contact the server administrator`
 }
 
 const notfound = () => {
@@ -24,4 +28,5 @@ const unauthorized = () => {
     throw new UnauthorizedError(message)
 }
 
-module.exports = { badrequest, forbidden, notfound, unauthorized }
+
+module.exports = { badrequest, forbidden, internalserver, notfound, unauthorized }

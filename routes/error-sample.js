@@ -9,12 +9,13 @@
  */
 
 const express = require('express')
-const { badrequest, forbidden, notfound, unauthorized } = require('../controller/error-sample')
+const { badrequest, forbidden, internalserver, notfound, unauthorized } = require('../controller/error-sample')
 
 const errorSampleRoute = express.Router()
 
 errorSampleRoute.route('/badrequest').get(badrequest)
 errorSampleRoute.route('/forbidden').get(forbidden)
+errorSampleRoute.route('/internalserver').get(internalserver)
 errorSampleRoute.route('/notfound').get(notfound)
 errorSampleRoute.route('/unauthorized').get(unauthorized)
 
