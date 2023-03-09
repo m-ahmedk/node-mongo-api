@@ -28,7 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 Clone the repository:
 
 ```
-git clone https://github.com/<your-username>/centralized-error-handling.git
+git clone https://github.com/m-ahmedk/centralized-error-handling.git
 ```
 
 Navigate to the cloned repository:
