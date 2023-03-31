@@ -30,7 +30,7 @@ To run this project, you need:
 ## Configuration
 This project uses environment variables for configuration. The following variables are required:
 
-- MONGODB_URI: the URI of the MongoDB database to use
+- MONGO_URI: the URI of the MongoDB database to use
 - PORT: default port to run the local host
 
 You can set these variables in a .env file in the root directory of the project.
