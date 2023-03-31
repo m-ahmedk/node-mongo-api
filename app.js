@@ -13,6 +13,11 @@ const cors = require('cors') // allows access to public domain
 const xss = require('xss-clean') // sanitize/clean req.body, req.params and req.query and secure cross origin request
 const rateLimiter = require('express-rate-limit') // limit calls to functions
 
+// Swagger imports
+const swaggerUI = require('swagger-ui-express')
+const YAML = require('yamljs')
+const swaggerDoc = YAML.load('./swagger.yaml')
+
 // import custom middlewares
 const errorHandler = require('./middleware/error-handler')
 const pageNotFound = require('./middleware/not-found-handler')
@@ -37,8 +42,18 @@ require('./routes/main')(app)
 
 // default route
 app.get('/', (req, res) => {
-    res.status(StatusCodes.OK).json("User CRUD Application")
+    res.redirect('/api-docs');
 })
+
+// configure swagger options, [removing schema]
+var options = {
+    swaggerOptions: {
+        defaultModelsExpandDepth: -1
+    }
+};
+
+// api docs route to Swagger docs
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc, options));
 
 // error handler
 app.use(errorHandler);
