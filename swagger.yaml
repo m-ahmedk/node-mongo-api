@@ -1,0 +1,2439 @@
+openapi: 3.0.0
+info:
+  title: User CRUD API
+  description: A User CRUD system, backed by MongoDB and documented with Swagger UI. It allows users to create, read, update, and delete user data, which is stored and retrieved with the Mongoose ORM.
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:3002/api/v1
+  variables: {}
+paths:
+  /users:
+    get:
+      tags:
+      - User
+      summary: Get All Users
+      operationId: GetAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '498'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 20:39:37 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679949583'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '858'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"35a-F5xMai+LxQhRSn71Vn8vIDpx2LY"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Fetchusers'
+                - example:
+                    message: The following users have been found
+                    result:
+                    - _id: 6420b31ca88a796b1dcfc347
+                      firstname: M Ahmed Villa
+                      lastname: Khan
+                      email: m.ahmedk287@gmail.com
+                      zipcode: '75500'
+                      isActive: true
+                      createdAt: 2023-03-26T21:03:24.262Z
+                      updatedAt: 2023-03-26T21:03:24.262Z
+                      __v: 0
+                    - _id: 6420bdd37f97a7791c4788ce
+                      firstname: Muhammad Ahmed
+                      lastname: Khan
+                      email: m.ahmedk287@hotmail.com
+                      zipcode: '75500'
+                      isActive: true
+                      createdAt: 2023-03-26T21:49:07.550Z
+                      updatedAt: 2023-03-26T21:49:07.550Z
+                      __v: 0
+                    - _id: 6421fede5ac140f23a8ffc91
+                      firstname: Muhammad Ahmed V.
+                      lastname: Khan
+                      email: tanni4u@hotmail.com
+                      zipcode: '75500'
+                      isActive: true
+                      createdAt: 2023-03-27T20:38:54.420Z
+                      updatedAt: 2023-03-27T20:38:54.420Z
+                      __v: 0
+                    rows_affected: 3
+                    fields_updated: null
+                    fields_affected: null
+                    statuscode: 200
+                    status: true
+              example:
+                message: The following users have been found
+                result:
+                - _id: 6420b31ca88a796b1dcfc347
+                  firstname: M Ahmed Villa
+                  lastname: Khan
+                  email: m.ahmedk287@gmail.com
+                  zipcode: '75500'
+                  isActive: true
+                  createdAt: 2023-03-26T21:03:24.262Z
+                  updatedAt: 2023-03-26T21:03:24.262Z
+                  __v: 0
+                - _id: 6420bdd37f97a7791c4788ce
+                  firstname: Muhammad Ahmed
+                  lastname: Khan
+                  email: m.ahmedk287@hotmail.com
+                  zipcode: '75500'
+                  isActive: true
+                  createdAt: 2023-03-26T21:49:07.550Z
+                  updatedAt: 2023-03-26T21:49:07.550Z
+                  __v: 0
+                - _id: 6421fede5ac140f23a8ffc91
+                  firstname: Muhammad Ahmed V.
+                  lastname: Khan
+                  email: tanni4u@hotmail.com
+                  zipcode: '75500'
+                  isActive: true
+                  createdAt: 2023-03-27T20:38:54.420Z
+                  updatedAt: 2023-03-27T20:38:54.420Z
+                  __v: 0
+                rows_affected: 3
+                fields_updated: null
+                fields_affected: null
+                statuscode: 200
+                status: true
+      deprecated: false
+    post:
+      tags:
+      - User
+      summary: Create
+      operationId: Create
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateRequest'
+              - example:
+                  email: tanni4u@hotmail.com
+                  phonenumber: '+923342154567'
+                  firstname: Muhammad Ahmed V.
+                  lastname: Khan
+                  zipcode: '75500'
+                  password: 123ahmed456
+            example:
+              email: tanni4u@hotmail.com
+              phonenumber: '+923342154567'
+              firstname: Muhammad Ahmed V.
+              lastname: Khan
+              zipcode: '75500'
+              password: 123ahmed456
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 20:38:54 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679949583'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '451'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"1c3-rY46rbC0+HONQNqRLF2Ko32w2Rc"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Usercreated'
+                - example:
+                    message: The user has been created
+                    result:
+                      firstname: Muhammad Ahmed V.
+                      lastname: Khan
+                      email: tanni4u@hotmail.com
+                      password: $2a$10$ViwMjk8HEicjWOrABfxW3.4lt0rKbCw3TAHulEARS1gtQwqF2reS.
+                      zipcode: '75500'
+                      isActive: true
+                      _id: 6421fede5ac140f23a8ffc91
+                      createdAt: 2023-03-27T20:38:54.420Z
+                      updatedAt: 2023-03-27T20:38:54.420Z
+                      __v: 0
+                    rows_affected: 1
+                    fields_updated: null
+                    fields_affected: null
+                    statuscode: 201
+                    status: true
+              example:
+                message: The user has been created
+                result:
+                  firstname: Muhammad Ahmed V.
+                  lastname: Khan
+                  email: tanni4u@hotmail.com
+                  password: $2a$10$ViwMjk8HEicjWOrABfxW3.4lt0rKbCw3TAHulEARS1gtQwqF2reS.
+                  zipcode: '75500'
+                  isActive: true
+                  _id: 6421fede5ac140f23a8ffc91
+                  createdAt: 2023-03-27T20:38:54.420Z
+                  updatedAt: 2023-03-27T20:38:54.420Z
+                  __v: 0
+                rows_affected: 1
+                fields_updated: null
+                fields_affected: null
+                statuscode: 201
+                status: true
+        '400':
+          description: Bad Request
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Sun, 26 Mar 2023 21:20:03 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679865660'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '112'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"70-6N7Mgs0gs3BJ1K29MM+pVcumEt4"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Validationerror1'
+                - example:
+                    message: 'ValidationError: firstname: Path `firstname` (`M`) is shorter than the minimum allowed length (3).'
+              example:
+                message: 'ValidationError: firstname: Path `firstname` (`M`) is shorter than the minimum allowed length (3).'
+        '409':
+          description: Conflict
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Sun, 26 Mar 2023 21:25:34 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679865984'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '144'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"90-iTacICjumSyTh/SG3J1irYCuA4o"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Duplicatedata1'
+                - example:
+                    message: 'MongoServerError: E11000 duplicate key error collection: UserDB.users index: email_1 dup key: { email: "m.ahmedk287@gmail.com" }'
+              example:
+                message: 'MongoServerError: E11000 duplicate key error collection: UserDB.users index: email_1 dup key: { email: "m.ahmedk287@gmail.com" }'
+        '406':
+          description: Not Acceptable
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Sun, 26 Mar 2023 21:46:43 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679867259'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '58'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"3a-Unr/ADdZoKS5JePKsrZ5WA5gH50"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Requiredfields1'
+                - example:
+                    message: 'ValidationError: email: Please provide email'
+              example:
+                message: 'ValidationError: email: Please provide email'
+      deprecated: false
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The User Id
+    get:
+      tags:
+      - User
+      summary: Get
+      operationId: Get
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 20:36:44 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679949463'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '406'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"196-/pAhbnarb2ryYsBxVJcB6teFyx0"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Fetchuser'
+                - example:
+                    message: The user with id 6420b31ca88a796b1dcfc347 has been found
+                    result:
+                      _id: 6420b31ca88a796b1dcfc347
+                      firstname: M Ahmed Villa
+                      lastname: Khan
+                      email: m.ahmedk287@gmail.com
+                      zipcode: '75500'
+                      isActive: true
+                      createdAt: 2023-03-26T21:03:24.262Z
+                      updatedAt: 2023-03-26T21:03:24.262Z
+                      __v: 0
+                    rows_affected: 1
+                    fields_updated: null
+                    fields_affected: null
+                    statuscode: 200
+                    status: true
+              example:
+                message: The user with id 6420b31ca88a796b1dcfc347 has been found
+                result:
+                  _id: 6420b31ca88a796b1dcfc347
+                  firstname: M Ahmed Villa
+                  lastname: Khan
+                  email: m.ahmedk287@gmail.com
+                  zipcode: '75500'
+                  isActive: true
+                  createdAt: 2023-03-26T21:03:24.262Z
+                  updatedAt: 2023-03-26T21:03:24.262Z
+                  __v: 0
+                rows_affected: 1
+                fields_updated: null
+                fields_affected: null
+                statuscode: 200
+                status: true
+        '404':
+          description: Not Found
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 18:06:09 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679940428'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '70'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"46-p+lJZq9d/jd6d5a/St+nF9auGnA"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Usernotfound1'
+                - example:
+                    message: 'Error: User with id 6420b31ca88a796b1dcfc348 not found..'
+              example:
+                message: 'Error: User with id 6420b31ca88a796b1dcfc348 not found..'
+      deprecated: false
+    patch:
+      tags:
+      - User
+      summary: Update
+      operationId: Update
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateRequest'
+              - example:
+                  currentPass: ahmed_123
+                  newPass: ahmed123
+            example:
+              currentPass: ahmed_123
+              newPass: ahmed123
+        required: true
+      responses:
+        '401':
+          description: Unauthorized
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '498'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 21:36:46 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679953025'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '104'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"68-Eh5nFYBRNNJhr1VseDnrkTSqw2w"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/IncorrectPassword1'
+                - example:
+                    message: 'Error: Error: You current password is incorrect, Please enter the correct one to continue.'
+              example:
+                message: 'Error: Error: You current password is incorrect, Please enter the correct one to continue.'
+        '200':
+          description: OK
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 21:37:22 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679953085'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '205'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"cd-4KgIDL+2Kjvd0phl8YdUAfQrKWU"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Fieldsupdated'
+                - example:
+                    data:
+                      message: The user with id 6420b31ca88a796b1dcfc347 has been modified
+                      result: null
+                      rows_affected: 1
+                      fields_updated:
+                      - zipcode
+                      - password
+                      fields_affected: 1
+                      statuscode: 200
+                      status: true
+              example:
+                data:
+                  message: The user with id 6420b31ca88a796b1dcfc347 has been modified
+                  result: null
+                  rows_affected: 1
+                  fields_updated:
+                  - zipcode
+                  - password
+                  fields_affected: 1
+                  statuscode: 200
+                  status: true
+        '404':
+          description: Not Found
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '498'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 21:43:37 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679953457'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '77'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"4d-fc8NsoHImoJfKbglIffMDfL1g18"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Usernotfound1'
+                - example:
+                    message: 'Error: Error: User with id 6420b31ca88a796b1dcfc348 not found..'
+              example:
+                message: 'Error: Error: User with id 6420b31ca88a796b1dcfc348 not found..'
+      deprecated: false
+    delete:
+      tags:
+      - User
+      summary: Delete
+      operationId: Delete
+      parameters: []
+      responses:
+        '404':
+          description: Not Found
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '499'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 21:46:18 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679953614'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '70'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"46-p+lJZq9d/jd6d5a/St+nF9auGnA"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Usernotfound1'
+                - example:
+                    message: 'Error: User with id 6420b31ca88a796b1dcfc348 not found..'
+              example:
+                message: 'Error: User with id 6420b31ca88a796b1dcfc348 not found..'
+        '200':
+          description: OK
+          headers:
+            Content-Security-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+            Cross-Origin-Embedder-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: require-corp
+            Cross-Origin-Opener-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            Cross-Origin-Resource-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: same-origin
+            X-DNS-Prefetch-Control:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: off
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            Origin-Agent-Cluster:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: ?1
+            X-Permitted-Cross-Domain-Policies:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: none
+            Referrer-Policy:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: no-referrer
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '0'
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            X-RateLimit-Limit:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '500'
+            X-RateLimit-Remaining:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '498'
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Mon, 27 Mar 2023 21:47:48 GMT
+            X-RateLimit-Reset:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '1679953717'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '180'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"b4-2Gjj/HA+mWBQkHRMi8L7ci5yC5k"
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/Userdeleted'
+                - example:
+                    message: The user with id 6421fede5ac140f23a8ffc91 has been deleted
+                    result: null
+                    rows_affected: 1
+                    fields_updated: null
+                    fields_affected: null
+                    statuscode: 200
+                    status: true
+              example:
+                message: The user with id 6421fede5ac140f23a8ffc91 has been deleted
+                result: null
+                rows_affected: 1
+                fields_updated: null
+                fields_affected: null
+                statuscode: 200
+                status: true
+      deprecated: false
+components:
+  schemas:
+    Fetchusers:
+      title: Fetchusers
+      required:
+      - message
+      - result
+      - rows_affected
+      - fields_updated
+      - fields_affected
+      - statuscode
+      - status
+      type: object
+      properties:
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+          description: ''
+        rows_affected:
+          type: integer
+          format: int32
+        fields_updated:
+          type: string
+          nullable: true
+        fields_affected:
+          type: string
+          nullable: true
+        statuscode:
+          type: integer
+          format: int32
+        status:
+          type: boolean
+      example:
+        message: The following users have been found
+        result:
+        - _id: 6420b31ca88a796b1dcfc347
+          firstname: M Ahmed Villa
+          lastname: Khan
+          email: m.ahmedk287@gmail.com
+          zipcode: '75500'
+          isActive: true
+          createdAt: 2023-03-26T21:03:24.262Z
+          updatedAt: 2023-03-26T21:03:24.262Z
+          __v: 0
+        - _id: 6420bdd37f97a7791c4788ce
+          firstname: Muhammad Ahmed
+          lastname: Khan
+          email: m.ahmedk287@hotmail.com
+          zipcode: '75500'
+          isActive: true
+          createdAt: 2023-03-26T21:49:07.550Z
+          updatedAt: 2023-03-26T21:49:07.550Z
+          __v: 0
+        - _id: 6421fede5ac140f23a8ffc91
+          firstname: Muhammad Ahmed V.
+          lastname: Khan
+          email: tanni4u@hotmail.com
+          zipcode: '75500'
+          isActive: true
+          createdAt: 2023-03-27T20:38:54.420Z
+          updatedAt: 2023-03-27T20:38:54.420Z
+          __v: 0
+        rows_affected: 3
+        fields_updated: null
+        fields_affected: null
+        statuscode: 200
+        status: true
+    Result:
+      title: Result
+      required:
+      - _id
+      - firstname
+      - lastname
+      - email
+      - zipcode
+      - isActive
+      - createdAt
+      - updatedAt
+      - __v
+      type: object
+      properties:
+        _id:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        zipcode:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        __v:
+          type: integer
+          format: int32
+      example:
+        _id: 6420b31ca88a796b1dcfc347
+        firstname: M Ahmed Villa
+        lastname: Khan
+        email: m.ahmedk287@gmail.com
+        zipcode: '75500'
+        isActive: true
+        createdAt: 2023-03-26T21:03:24.262Z
+        updatedAt: 2023-03-26T21:03:24.262Z
+        __v: 0
+    Fetchuser:
+      title: Fetchuser
+      required:
+      - message
+      - result
+      - rows_affected
+      - fields_updated
+      - fields_affected
+      - statuscode
+      - status
+      type: object
+      properties:
+        message:
+          type: string
+        result:
+          allOf:
+          - $ref: '#/components/schemas/Result'
+          - {}
+        rows_affected:
+          type: integer
+          format: int32
+        fields_updated:
+          type: string
+          nullable: true
+        fields_affected:
+          type: string
+          nullable: true
+        statuscode:
+          type: integer
+          format: int32
+        status:
+          type: boolean
+      example:
+        message: The user with id 6420b31ca88a796b1dcfc347 has been found
+        result:
+          _id: 6420b31ca88a796b1dcfc347
+          firstname: M Ahmed Villa
+          lastname: Khan
+          email: m.ahmedk287@gmail.com
+          zipcode: '75500'
+          isActive: true
+          createdAt: 2023-03-26T21:03:24.262Z
+          updatedAt: 2023-03-26T21:03:24.262Z
+          __v: 0
+        rows_affected: 1
+        fields_updated: null
+        fields_affected: null
+        statuscode: 200
+        status: true
+    Usernotfound1:
+      title: Usernotfound1
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 'Error: User with id 6420b31ca88a796b1dcfc348 not found..'
+    CreateRequest:
+      title: CreateRequest
+      required:
+      - email
+      - phonenumber
+      - firstname
+      - lastname
+      - zipcode
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        phonenumber:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        zipcode:
+          type: string
+        password:
+          type: string
+      example:
+        email: tanni4u@hotmail.com
+        phonenumber: '+923342154567'
+        firstname: Muhammad Ahmed V.
+        lastname: Khan
+        zipcode: '75500'
+        password: 123ahmed456
+    Usercreated:
+      title: Usercreated
+      required:
+      - message
+      - result
+      - rows_affected
+      - fields_updated
+      - fields_affected
+      - statuscode
+      - status
+      type: object
+      properties:
+        message:
+          type: string
+        result:
+          allOf:
+          - $ref: '#/components/schemas/Result2'
+          - {}
+        rows_affected:
+          type: integer
+          format: int32
+        fields_updated:
+          type: string
+          nullable: true
+        fields_affected:
+          type: string
+          nullable: true
+        statuscode:
+          type: integer
+          format: int32
+        status:
+          type: boolean
+      example:
+        message: The user has been created
+        result:
+          firstname: Muhammad Ahmed V.
+          lastname: Khan
+          email: tanni4u@hotmail.com
+          password: $2a$10$ViwMjk8HEicjWOrABfxW3.4lt0rKbCw3TAHulEARS1gtQwqF2reS.
+          zipcode: '75500'
+          isActive: true
+          _id: 6421fede5ac140f23a8ffc91
+          createdAt: 2023-03-27T20:38:54.420Z
+          updatedAt: 2023-03-27T20:38:54.420Z
+          __v: 0
+        rows_affected: 1
+        fields_updated: null
+        fields_affected: null
+        statuscode: 201
+        status: true
+    Result2:
+      title: Result2
+      required:
+      - firstname
+      - lastname
+      - email
+      - password
+      - zipcode
+      - isActive
+      - _id
+      - createdAt
+      - updatedAt
+      - __v
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        zipcode:
+          type: string
+        isActive:
+          type: boolean
+        _id:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        __v:
+          type: integer
+          format: int32
+      example:
+        firstname: Muhammad Ahmed V.
+        lastname: Khan
+        email: tanni4u@hotmail.com
+        password: $2a$10$ViwMjk8HEicjWOrABfxW3.4lt0rKbCw3TAHulEARS1gtQwqF2reS.
+        zipcode: '75500'
+        isActive: true
+        _id: 6421fede5ac140f23a8ffc91
+        createdAt: 2023-03-27T20:38:54.420Z
+        updatedAt: 2023-03-27T20:38:54.420Z
+        __v: 0
+    Validationerror1:
+      title: Validationerror1
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 'ValidationError: firstname: Path `firstname` (`M`) is shorter than the minimum allowed length (3).'
+    Duplicatedata1:
+      title: Duplicatedata1
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 'MongoServerError: E11000 duplicate key error collection: UserDB.users index: email_1 dup key: { email: "m.ahmedk287@gmail.com" }'
+    Requiredfields1:
+      title: Requiredfields1
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 'ValidationError: email: Please provide email'
+    UpdateRequest:
+      title: UpdateRequest
+      required:
+      - currentPass
+      - newPass
+      type: object
+      properties:
+        currentPass:
+          type: string
+        newPass:
+          type: string
+      example:
+        currentPass: ahmed_123
+        newPass: ahmed123
+    IncorrectPassword1:
+      title: IncorrectPassword1
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 'Error: Error: You current password is incorrect, Please enter the correct one to continue.'
+    Fieldsupdated:
+      title: Fieldsupdated
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Data'
+          - {}
+      example:
+        data:
+          message: The user with id 6420b31ca88a796b1dcfc347 has been modified
+          result: null
+          rows_affected: 1
+          fields_updated:
+          - zipcode
+          - password
+          fields_affected: 1
+          statuscode: 200
+          status: true
+    Data:
+      title: Data
+      required:
+      - message
+      - result
+      - rows_affected
+      - fields_updated
+      - fields_affected
+      - statuscode
+      - status
+      type: object
+      properties:
+        message:
+          type: string
+        result:
+          type: string
+          nullable: true
+        rows_affected:
+          type: integer
+          format: int32
+        fields_updated:
+          type: array
+          items:
+            type: string
+          description: ''
+        fields_affected:
+          type: integer
+          format: int32
+        statuscode:
+          type: integer
+          format: int32
+        status:
+          type: boolean
+      example:
+        message: The user with id 6420b31ca88a796b1dcfc347 has been modified
+        result: null
+        rows_affected: 1
+        fields_updated:
+        - zipcode
+        - password
+        fields_affected: 1
+        statuscode: 200
+        status: true
+    Userdeleted:
+      title: Userdeleted
+      required:
+      - message
+      - result
+      - rows_affected
+      - fields_updated
+      - fields_affected
+      - statuscode
+      - status
+      type: object
+      properties:
+        message:
+          type: string
+        result:
+          type: string
+          nullable: true
+        rows_affected:
+          type: integer
+          format: int32
+        fields_updated:
+          type: string
+          nullable: true
+        fields_affected:
+          type: string
+          nullable: true
+        statuscode:
+          type: integer
+          format: int32
+        status:
+          type: boolean
+      example:
+        message: The user with id 6421fede5ac140f23a8ffc91 has been deleted
+        result: null
+        rows_affected: 1
+        fields_updated: null
+        fields_affected: null
+        statuscode: 200
+        status: true
+tags:
+- name: User
