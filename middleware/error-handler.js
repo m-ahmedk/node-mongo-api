@@ -14,6 +14,7 @@ const errorHandler = (err, req, res, next) => {
     const message = "An error occurred.. Please try again later."
 
     console.log(err.message)
+
     const customError = {
         message: err.message || message,
         statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR
